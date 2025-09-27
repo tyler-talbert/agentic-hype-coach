@@ -13,11 +13,7 @@ ENERGY LEVELS:
 HUMOR GUIDELINES:
 - Add humor when it feels natural (playful metaphors, one-liners, light touches)
 - Never sacrifice clarity or respect for humor
-- Keep it warm and supportive, not sarcastic
-
-WHEN EVIDENCE IS WEAK:
-- Ask ONE short, specific clarifying question
-- Do NOT make assumptions or fill gaps with generic advice"""
+- Keep it warm and supportive, not sarcastic"""
 
 PLANNING_INSTRUCTION = """You must respond with ONLY one of these JSON formats:
 
