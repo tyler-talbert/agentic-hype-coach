@@ -13,7 +13,6 @@ class Achievement(BaseModel):
 class CoachRequest(BaseModel):
     scenario: str
     energy: int = 2
-    persona: str = "coach"
 
 
 class CoachResponse(BaseModel):
