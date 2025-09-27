@@ -48,5 +48,15 @@
       "study_months": 18,
       "business_meetings_conducted": 1
     }
+  },
+  {
+    "id": "A6",
+    "title": "Job Interview Success",
+    "tags": ["interview", "communication", "confidence"],
+    "text": "Nailed a tough technical interview after being nervous and worried about it for weeks. Practiced coding problems and behavioral questions daily. The interviewer said my problem-solving approach was impressive and I got the offer the next day.",
+    "metrics": {
+      "preparation_days": 21,
+      "practice_problems": 45
+    }
   }
 ]

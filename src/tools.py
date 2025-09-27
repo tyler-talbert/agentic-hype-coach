@@ -31,8 +31,8 @@ def build_cache() -> Dict[str, Any]:
     }
 
 
-def get_highlights(query: str, k: int = 3, cache: Optional[Dict[str, Any]] = None) -> List[Achievement]:
-    """Use query_selector to get ids, map to Achievement, return up to k."""
+def get_highlights(query: str, k: int = 3, cache: Optional[Dict[str, Any]] = None) -> List[tuple[Achievement, float]]:
+    """Use query_selector to get ids, map to Achievement, return up to k with scores."""
     global _module_cache
     
     if cache is None:
@@ -46,10 +46,10 @@ def get_highlights(query: str, k: int = 3, cache: Optional[Dict[str, Any]] = Non
     # Get (id, score) tuples from selector
     results = query_selector(selector, query, k)
     
-    # Map ids to Achievement objects
+    # Map ids to Achievement objects with scores
     highlights = []
     for achievement_id, score in results:
         if achievement_id in achievements_by_id:
-            highlights.append(achievements_by_id[achievement_id])
+            highlights.append((achievements_by_id[achievement_id], score))
     
     return highlights[:k]

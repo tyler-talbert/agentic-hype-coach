@@ -31,7 +31,8 @@ def hype(scenario: str, energy: int):
     if response.used_ids:
         click.echo(f"\nBased on achievements: {', '.join(response.used_ids)}")
 
-    click.echo(f"Confidence: {response.confidence:.1%}")
+    if response.confidence is not None:
+        click.echo(f"Confidence: {response.confidence:.1%}")
 
 if __name__ == "__main__":
     hype()

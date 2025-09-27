@@ -4,7 +4,7 @@ import requests
 from typing import List, Dict, Any
 from .models import CoachRequest, CoachResponse
 from .tools import get_highlights
-from .prompts import SYSTEM_PROMPT, PLANNING_INSTRUCTION, FINAL_INSTRUCTION
+from .prompts import SYSTEM_PROMPT, PLANNING_INSTRUCTION, FINAL_INSTRUCTION, GENERAL_RESPONSE_INSTRUCTION
 
 
 class Agent:
@@ -91,13 +91,21 @@ USED_IDS: [A1, A2]"""
         
         # Step 2: Get planning response
         planning_response = self.llm_call(messages)
+        tool_called = False
+        highlights = []
+        similarity_scores = []
         
         # Step 3: Check if planning response is JSON
         try:
             plan = json.loads(planning_response.strip())
-            if plan.get("action") == "get_highlights":
-                # Get highlights
-                highlights = get_highlights(request.scenario, k=3)
+            action = plan.get("action", "")
+            # The LLM has been consistently making a random typo with highights instead of highlights <-- Strange!! 
+            if action in ["get_highlights", "get_highights", "get_highlight"]:
+                tool_called = True
+                # Get highlights with scores
+                highlights_with_scores = get_highlights(request.scenario, k=3)
+                highlights = [ach for ach, score in highlights_with_scores]
+                similarity_scores = [score for ach, score in highlights_with_scores]
                 
                 # Step 4: Append tool message
                 tool_summary = []
@@ -112,6 +120,15 @@ USED_IDS: [A1, A2]"""
                 # Step 5: Append final instruction and get final response
                 messages.append({"role": "system", "content": FINAL_INSTRUCTION})
                 final_response = self.llm_call(messages)
+            elif action == "proceed":
+                # No tool needed, generate general response
+                # Remove the planning instruction and replace with general instruction
+                messages = [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": f"Scenario: {request.scenario}\nEnergy level: {request.energy}"},
+                    {"role": "system", "content": GENERAL_RESPONSE_INSTRUCTION}
+                ]
+                final_response = self.llm_call(messages)
             else:
                 final_response = planning_response
         except (json.JSONDecodeError, KeyError):
@@ -119,6 +136,8 @@ USED_IDS: [A1, A2]"""
             final_response = planning_response
         
         # Step 6: Parse final output
+        # LLM should return plain text based on FINAL_INSTRUCTION
+        
         lines = final_response.strip().split('\n')
         used_ids = []
         speech_lines = []
@@ -131,15 +150,33 @@ USED_IDS: [A1, A2]"""
                     if ids_part.startswith('[') and ids_part.endswith(']'):
                         ids_str = ids_part[1:-1]  # Remove brackets
                         used_ids = [id.strip() for id in ids_str.split(',') if id.strip()]
-                except:
+                    print(f"DEBUG: Found USED_IDS line: '{line}', parsed: {used_ids}")
+                except Exception as e:
+                    print(f"DEBUG: Failed to parse USED_IDS: {e}")
                     pass
             else:
                 speech_lines.append(line)
         
         speech = '\n'.join(speech_lines).strip()
         
-        # Step 7: Set mock confidence
-        confidence = 0.8 if used_ids else 0.4
+        # Step 7: Calculate confidence based on tool usage and similarity scores
+        if not tool_called:
+            # No tool called - general conversation, no confidence needed
+            confidence = None
+        elif similarity_scores and used_ids:
+            # Tool called and achievements used - base confidence on similarity scores
+            avg_similarity = sum(similarity_scores) / len(similarity_scores)
+            # Convert similarity to confidence (scores are 0-1)
+            confidence = min(0.95, max(0.3, avg_similarity))
+            print(f"DEBUG: similarity_scores={similarity_scores}, avg={avg_similarity}, confidence={confidence}")
+        elif tool_called and not used_ids:
+            # Tool called but no achievements referenced - low confidence
+            confidence = 0.3
+            print(f"DEBUG: Tool called but no used_ids, confidence=0.3")
+        else:
+            # Fallback
+            confidence = 0.5
+            print(f"DEBUG: Fallback confidence=0.5")
         
         return CoachResponse(
             speech=speech,

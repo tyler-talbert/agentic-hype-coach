@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class Achievement(BaseModel):
@@ -18,4 +18,4 @@ class CoachRequest(BaseModel):
 class CoachResponse(BaseModel):
     speech: str
     used_ids: List[str]
-    confidence: float
+    confidence: Optional[float]
