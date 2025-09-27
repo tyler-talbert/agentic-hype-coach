@@ -11,8 +11,9 @@ def test_get_highlights_returns_achievements():
     results = get_highlights("running", k=2)
     
     assert len(results) <= 2
-    for result in results:
-        assert isinstance(result, Achievement)
+    for achievement, score in results:
+        assert isinstance(achievement, Achievement)
+        assert isinstance(score, float)
 
 
 def test_get_highlights_respects_k_limit():

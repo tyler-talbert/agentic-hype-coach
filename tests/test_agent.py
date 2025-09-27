@@ -42,7 +42,7 @@ def test_run_flow_in_stub_mode():
 
         assert isinstance(out, CoachResponse)
         assert out.used_ids == ["A1", "A2"]
-        assert out.confidence == 0.8
+        assert out.confidence >= 0.3  # Confidence based on similarity scores
         # The speech should not contain the raw USED_IDS tag
         assert "USED_IDS:" not in out.speech
 
@@ -60,7 +60,7 @@ def test_confidence_drops_without_ids():
             req = CoachRequest(scenario="test", energy=1)
             out = agent.run(req)
             assert out.used_ids == []
-            assert out.confidence == 0.4
+            assert out.confidence is None  # General conversations have no confidence
 
 
 def test_non_json_planning_treated_as_final():
