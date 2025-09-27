@@ -34,7 +34,7 @@ Energy levels:
 
 **Retrieval Tool**: TF-IDF selector finds relevant achievements based on scenario keywords. Confidence scoring reflects retrieval quality using cosine similarity.
 
-**Evidence Grounding**: All motivational content references specific achievements with inline citations. No generic advice without supporting evidence.
+**Evidence Grounding**: All motivational content references specific achievements with inline citations. Only generic advice without applicable achievements
 
 **TF-IDF vs Embeddings**: Chose TF-IDF for simplicity and interpretability. Embeddings would be a natural day-two enhancement for better semantic matching.
 
