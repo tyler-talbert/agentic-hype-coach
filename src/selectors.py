@@ -27,8 +27,10 @@ class TextIndex:
 
 
 def build_selector(achievements: List[Dict[str, Any]]) -> object:
+    """Uses methods above to extract achievements and vectorize them"""
     return TextIndex(achievements)
 
 
 def query_selector(selector: object, query: str, k: int) -> List[Tuple[str, float]]:
+    """Returns the k most similar vectors based on the build_selector method"""
     return selector.query(query, k)
