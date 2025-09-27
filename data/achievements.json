@@ -1,0 +1,52 @@
+[
+  {
+    "id": "A1",
+    "title": "Marathon Completion",
+    "tags": ["endurance", "fitness", "goal-setting"],
+    "text": "Ran my first marathon in 4:15 after six months of training. Missed two weeks with shin splints but kept at it. Crossing the finish line was the win.",
+    "metrics": {
+      "final_time": "4:15:32",
+      "training_days": 142
+    }
+  },
+  {
+    "id": "A2",
+    "title": "Public Speaking Breakthrough",
+    "tags": ["communication", "confidence", "growth"],
+    "text": "Used to freeze during presentations. After a year with Toastmasters, managed to give a talk to about 200 people. Slides crashed halfway but I improvised. The applause at the end felt unreal.",
+    "metrics": {
+      "audience_size": 200,
+      "toastmasters_speeches": 12
+    }
+  },
+  {
+    "id": "A3",
+    "title": "Career Pivot Success",
+    "tags": ["career", "learning", "adaptability"],
+    "text": "Taught myself to code while still working full-time in accounting. Built a few rough portfolio projects and eventually landed a junior SWE job. Took about four months of serious nights/weekends study.",
+    "metrics": {
+      "study_hours": 600,
+      "portfolio_projects": 5
+    }
+  },
+  {
+    "id": "A4",
+    "title": "Team Leadership Under Pressure",
+    "tags": ["leadership", "teamwork", "problem-solving"],
+    "text": "Led a team of 8 through a product launch during company layoffs. Two engineers left mid-project. We slipped by three days but still shipped one of our best releases.",
+    "metrics": {
+      "team_size": 8,
+      "delay_days": 3
+    }
+  },
+  {
+    "id": "A5",
+    "title": "Learning Spanish",
+    "tags": ["learning", "persistence", "communication"],
+    "text": "Picked up Spanish over about 18 months with apps and weekend meetups. Still stumble on tenses, but I can hold my own in conversations now. Even ran a short client call in Spanish last month.",
+    "metrics": {
+      "study_months": 18,
+      "business_meetings_conducted": 1
+    }
+  }
+]
