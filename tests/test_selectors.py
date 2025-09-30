@@ -35,7 +35,7 @@ def test_selector_known_tag_rank_one():
     ]
     
     selector = build_selector(achievements)
-    results = query_selector(selector, "running", k=3)
+    results = query_selector(selector, "running", k=2)
     
     assert len(results) >= 1
     assert results[0][0] == "A1"  # First result should be A1 (contains "running" tag)

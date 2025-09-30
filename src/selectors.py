@@ -10,6 +10,8 @@ class TextIndex:
         # training on achievement txt
         self.vectorizer = TfidfVectorizer(stop_words="english", max_features=1000)
         self.matrix = self.vectorizer.fit_transform(docs)
+        # fit builds the vocab across all docs
+        # transform computes an TF-IDF by row
 
     def _flatten(self, a: Dict[str, Any]) -> str:
         title = a.get("title", "")
@@ -20,7 +22,7 @@ class TextIndex:
 
     def query(self, query: str, k: int = 3) -> List[Tuple[str, float]]:
         user_query_vector = self.vectorizer.transform([query.lower()]) # Turn user query to TF-IDF vector
-        sims = cosine_similarity(user_query_vector, self.matrix).flatten() #1-D array of ach vec (vector determine how close each ach is to userQueryVector)
+        sims = cosine_similarity(user_query_vector, self.matrix).flatten() #collapses it into a single similarity score per row
         k = min(k, len(self.ids))
         top = np.argsort(sims)[::-1][:k]
         return [(self.ids[i], float(sims[i])) for i in top] # [("A2", 0.91), ("A3", 0.34)]

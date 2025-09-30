@@ -103,7 +103,7 @@ USED_IDS: [A1, A2]"""
             if action in ["get_highlights", "get_highights", "get_highlight"]:
                 tool_called = True
                 # Get highlights with scores
-                highlights_with_scores = get_highlights(request.scenario, k=3)
+                highlights_with_scores = get_highlights(request.scenario, k=2)
                 highlights = [ach for ach, score in highlights_with_scores]
                 similarity_scores = [score for ach, score in highlights_with_scores]
                 
@@ -162,10 +162,17 @@ USED_IDS: [A1, A2]"""
             # No tool called - general conversation, no confidence needed
             confidence = None
         elif similarity_scores and used_ids:
-            # Tool called and achievements used - base confidence on similarity scores
-            avg_similarity = sum(similarity_scores) / len(similarity_scores)
-            # Convert similarity to confidence (scores are 0-1)
-            confidence = min(0.95, max(0.3, avg_similarity))
+            # Tool called and achievements used - base confidence on similarity scores of USED achievements only
+            used_scores = []
+            for i, (ach, score) in enumerate(zip(highlights, similarity_scores)):
+                if ach.id in used_ids:
+                    used_scores.append(score)
+            
+            if used_scores:
+                avg_similarity = sum(used_scores) / len(used_scores)
+                confidence = min(0.95, max(0.3, avg_similarity))
+            else:
+                confidence = 0.3
         elif tool_called and not used_ids:
             # Tool called but no achievements referenced - low confidence
             confidence = 0.3
