@@ -42,7 +42,7 @@ Energy levels:
 
 Run tests:
 ```bash
-pytest -q
+python -m pytest -q
 ```
 
 Environment variables:

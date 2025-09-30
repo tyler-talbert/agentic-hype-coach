@@ -2,61 +2,57 @@
   {
     "id": "A1",
     "title": "Marathon Completion",
-    "tags": ["endurance", "fitness", "goal-setting"],
-    "text": "Ran my first marathon in 4:15 after six months of training. Missed two weeks with shin splints but kept at it. Crossing the finish line was the win.",
-    "metrics": {
-      "final_time": "4:15:32",
-      "training_days": 142
-    }
+    "tags": ["endurance", "fitness", "goal-setting", "running", "race", "10k", "finish-strong", "race-pace"],
+    "text": "Ran my first marathon in 4:15 after six months of training, with a 10k tune-up race to practice running race-pace. Missed two weeks with shin splints but kept going. Finishing strong was the win.",
+    "metrics": { "final_time": "4:15:32", "training_days": 142 }
   },
   {
     "id": "A2",
-    "title": "Public Speaking Breakthrough",
-    "tags": ["communication", "confidence", "growth"],
-    "text": "Used to freeze during presentations. After a year with Toastmasters, managed to give a talk to about 200 people. Slides crashed halfway but I improvised. The applause at the end felt unreal.",
-    "metrics": {
-      "audience_size": 200,
-      "toastmasters_speeches": 12
-    }
+    "title": "Half-Marathon Personal Record",
+    "tags": ["endurance", "running", "fitness", "race", "10k", "finish-strong", "race-pace"],
+    "text": "Trained consistently for a half-marathon and a local 10k running race, set a PR, and learned how to hold race-pace through the middle miles to finish strong.",
+    "metrics": { "distance_miles": 13.1, "training_weeks": 10 }
   },
   {
     "id": "A3",
-    "title": "Career Pivot Success",
-    "tags": ["career", "learning", "adaptability"],
-    "text": "Taught myself to code while still working full-time in accounting. Built a few rough portfolio projects and eventually landed a junior SWE job. Took about four months of serious nights/weekends study.",
-    "metrics": {
-      "study_hours": 600,
-      "portfolio_projects": 5
-    }
+    "title": "Public Speaking Breakthrough",
+    "tags": ["communication", "confidence", "growth", "meetup", "slides-crash", "improvise", "toastmasters", "audience"],
+    "text": "Used to freeze during presentations. After a year with Toastmasters, gave a meetup talk to ~200 people. Slides crashed mid-talk, so I improvised confidently and kept the audience with me.",
+    "metrics": { "audience_size": 200, "toastmasters_speeches": 12 }
   },
   {
     "id": "A4",
-    "title": "Team Leadership Under Pressure",
-    "tags": ["leadership", "teamwork", "problem-solving"],
-    "text": "Led a team of 8 through a product launch during company layoffs. Two engineers left mid-project. We slipped by three days but still shipped one of our best releases.",
-    "metrics": {
-      "team_size": 8,
-      "delay_days": 3
-    }
+    "title": "Toastmasters Contest Speech",
+    "tags": ["public-speaking", "confidence", "communication", "meetup", "slides-crash", "improvise", "toastmasters", "audience", "keep-audience-engaged"],
+    "text": "Gave a meetup talk for Toastmasters; when the slides crashed, I improvised confidently, spoke without notes, and kept the audience engaged with a quick story and Q&A.",
+    "metrics": { "speeches_delivered": 10, "practice_sessions": 15 }
   },
   {
     "id": "A5",
-    "title": "Learning Spanish",
-    "tags": ["learning", "persistence", "communication"],
-    "text": "Picked up Spanish over about 18 months with apps and weekend meetups. Still stumble on tenses, but I can hold my own in conversations now. Even ran a short client call in Spanish last month.",
-    "metrics": {
-      "study_months": 18,
-      "business_meetings_conducted": 1
-    }
+    "title": "Cooking a New Dish",
+    "tags": ["learning", "fun", "persistence", "cooking", "homemade-pasta", "kitchen"],
+    "text": "Tried cooking homemade pasta for the first time. Dough stuck everywhere, but with practice the dish came out delicious. Fun kitchen win I want to repeat.",
+    "metrics": { "attempts": 3, "taste_testers": 4 }
   },
   {
     "id": "A6",
-    "title": "Job Interview Success",
-    "tags": ["interview", "communication", "confidence"],
-    "text": "Nailed a tough technical interview after being nervous and worried about it for weeks. Practiced coding problems and behavioral questions daily. The interviewer said my problem-solving approach was impressive and I got the offer the next day.",
-    "metrics": {
-      "preparation_days": 21,
-      "practice_problems": 45
-    }
+    "title": "Learning Guitar",
+    "tags": ["learning", "music", "persistence", "guitar", "first-song", "practice"],
+    "text": "Picked up guitar and practiced daily drills. Fingers hurt at first, but I learned my first song end-to-end and can now play it smoothly. Small, fun music milestone.",
+    "metrics": { "practice_days": 45, "songs_learned": 1 }
+  },
+  {
+    "id": "A7",
+    "title": "Deadline Risk: MVP Scope Cut and Delivery",
+    "tags": ["deadline", "prioritization", "execution", "mvp", "deliver-on-time", "finish-strong"],
+    "text": "Faced a slipping deadline with reduced capacity. I aligned stakeholders, cut scope to a true MVP, focused on must-haves, and delivered on time—finished strong with a stable build.",
+    "metrics": { "team_size": 4, "scope_reduction_percent": 35 }
+  },
+  {
+    "id": "A8",
+    "title": "Feature Freeze and Scope Alignment",
+    "tags": ["deadline", "prioritization", "delivery", "feature-freeze", "mvp", "deliver-on-time"],
+    "text": "Negotiated a feature freeze two weeks before launch, trimmed nice-to-haves, and aligned everyone on MVP. The release landed smoothly and on time.",
+    "metrics": { "freeze_days": 14, "scope_reduction_percent": 30 }
   }
 ]
